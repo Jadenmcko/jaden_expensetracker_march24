@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jaden_expensetracker_march24/models/expense.dart';
+import 'package:jaden_expensetracker_march24/widgets/expensesList.dart';
 
 class Expenses extends StatefulWidget{
   const Expenses({super.key});
@@ -20,8 +21,9 @@ class _ExpensesState extends State<Expenses>{
     // TODO: implement build
     return Scaffold(body: Column(children: [
       Text("Chart Data"),
-      SizedBox(height: 30),
-      Text("Expenses data would go here")],
-      ));
+      // SizedBox(height: 30),
+      SizedBox(height: 300,
+        child: Expenseslist(expenses: _registeredExpenses))]),
+      );
   }
 }
