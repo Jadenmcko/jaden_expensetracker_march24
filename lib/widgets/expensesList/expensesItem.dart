@@ -9,7 +9,16 @@ class Expensesitem extends StatelessWidget{
     // TODO: implement build
     return Card(child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16,),
-      child: Text(expense.title),
+      child: Column(
+        children: [
+          Text(expense.title), const SizedBox(height: 4), // space between row and column
+          Row(children: [Text('\$${expense.amount.toStringAsFixed(2)}'),
+          Spacer(),
+          Row(children: [const Icon(Icons.alarm), const SizedBox(width: 8),
+          Text(expense.date.toString())
+          ],)],)
+        ],
+      ),
     ),
     );
   }
