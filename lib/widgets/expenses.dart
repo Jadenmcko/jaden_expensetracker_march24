@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jaden_expensetracker_march24/models/expense.dart';
-import 'package:jaden_expensetracker_march24/widgets/expensesList.dart';
+import 'package:jaden_expensetracker_march24/widgets/expensesList/expensesList.dart';
 
 class Expenses extends StatefulWidget{
   const Expenses({super.key});
@@ -23,7 +23,8 @@ class _ExpensesState extends State<Expenses>{
       Text("Chart Data"),
       // SizedBox(height: 30),
       SizedBox(height: 300,
-        child: Expenseslist(expenses: _registeredExpenses))]),
+        child: Expenseslist(expenses: _registeredExpenses))],
+        ),
       );
   }
 }
