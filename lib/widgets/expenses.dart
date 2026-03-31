@@ -22,7 +22,7 @@ class _ExpensesState extends State<Expenses>{
     return Scaffold(body: Column(children: [
       Text("Chart Data"),
       // SizedBox(height: 30),
-      SizedBox(height: 300,
+      Expanded(
         child: Expenseslist(expenses: _registeredExpenses))],
         ),
       );

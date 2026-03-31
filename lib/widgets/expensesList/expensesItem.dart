@@ -8,14 +8,14 @@ class Expensesitem extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Card(child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16,),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 19,),
       child: Column(
         children: [
           Text(expense.title), const SizedBox(height: 4), // space between row and column
           Row(children: [Text('\$${expense.amount.toStringAsFixed(2)}'),
           Spacer(),
-          Row(children: [const Icon(Icons.alarm), const SizedBox(width: 8),
-          Text(expense.date.toString())
+          Row(children: [Icon(categoryIcons[expense.category]), const SizedBox(width: 10),
+          Text(expense.formattedDate)
           ],)],)
         ],
       ),
