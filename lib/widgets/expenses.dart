@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jaden_expensetracker_march24/models/expense.dart';
 import 'package:jaden_expensetracker_march24/widgets/expensesList/expensesList.dart';
+import 'package:jaden_expensetracker_march24/widgets/newExpense.dart';
 
 class Expenses extends StatefulWidget{
   const Expenses({super.key});
@@ -10,6 +11,9 @@ class Expenses extends StatefulWidget{
   }
 }
 class _ExpensesState extends State<Expenses>{
+  void _openAddExpenseOverlay(){
+    showModalBottomSheet(context: context, builder: (ctx) => Newexpense());
+  }
   final List<Expense> _registeredExpenses = [
     Expense(title: "Amores Pizza Cafe", amount: 15.94, date: DateTime.now(), category: Category.food),
     Expense(title: "Whole Foods Market", amount: 22.73, date: DateTime.now(), category: Category.food),
@@ -20,7 +24,7 @@ class _ExpensesState extends State<Expenses>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(appBar: AppBar(title: const Text("EXpense Tracker"),
-    actions: [IconButton(icon: const Icon(Icons.add), onPressed: () {},
+    actions: [IconButton(icon: const Icon(Icons.add), onPressed: _openAddExpenseOverlay,
     )],),
       body: Column(children: [
       Text("Chart Data"),
