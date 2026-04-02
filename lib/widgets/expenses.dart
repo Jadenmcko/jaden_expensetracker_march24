@@ -19,7 +19,10 @@ class _ExpensesState extends State<Expenses>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(body: Column(children: [
+    return Scaffold(appBar: AppBar(title: const Text("EXpense Tracker"),
+    actions: [IconButton(icon: const Icon(Icons.add), onPressed: () {},
+    )],),
+      body: Column(children: [
       Text("Chart Data"),
       // SizedBox(height: 30),
       Expanded(
