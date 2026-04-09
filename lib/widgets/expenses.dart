@@ -12,7 +12,18 @@ class Expenses extends StatefulWidget{
 }
 class _ExpensesState extends State<Expenses>{
   void _openAddExpenseOverlay(){
-    showModalBottomSheet(context: context, builder: (ctx) => Newexpense());
+    showModalBottomSheet(isScrollControlled: true,
+    context: context, builder: (ctx) => Newexpense(onAddExpense: _addExpense));
+  }
+  void _addExpense(Expense expense){
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+  void _removeExpense(Expense expense){
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
   }
   final List<Expense> _registeredExpenses = [
     Expense(title: "Amores Pizza Cafe", amount: 15.94, date: DateTime.now(), category: Category.food),
@@ -30,7 +41,9 @@ class _ExpensesState extends State<Expenses>{
       Text("Chart Data"),
       // SizedBox(height: 30),
       Expanded(
-        child: Expenseslist(expenses: _registeredExpenses))],
+        child: Expenseslist(
+          onRemoveExpense: _removeExpense,
+          expenses: _registeredExpenses))],
         ),
       );
   }
