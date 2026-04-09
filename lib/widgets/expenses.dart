@@ -17,7 +17,7 @@ class _ExpensesState extends State<Expenses>{
   final List<Expense> _registeredExpenses = [
     Expense(title: "Amores Pizza Cafe", amount: 15.94, date: DateTime.now(), category: Category.food),
     Expense(title: "Whole Foods Market", amount: 22.73, date: DateTime.now(), category: Category.food),
-    Expense(title: "Long Island Rail Road", amount: 106.99, date: DateTime.now(), category: Category.travel),
+    Expense(title: "Long Island Rail Road", amount: 299.99, date: DateTime.now(), category: Category.travel),
     Expense(title: "Staples", amount: 8.34, date: DateTime.now(), category: Category.work)
   ];
   @override

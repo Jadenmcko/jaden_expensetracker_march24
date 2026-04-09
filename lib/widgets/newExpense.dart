@@ -1,3 +1,4 @@
+import 'package:jaden_expensetracker_march24/models/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -12,6 +13,8 @@ class _NewexpenseState extends State<Newexpense>{
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime? _selectedDate;
+  // apr 8
+  Category _selectedCategory = Category.leisure;
   void _presentDatePicker() async{
     final now = DateTime.now();
     final firstDate = DateTime(now.year -1, now.month, now.day);
@@ -39,8 +42,7 @@ class _NewexpenseState extends State<Newexpense>{
   
           // amount field
           Row(
-            children: [
-              Expanded(
+            children: [Expanded(
                 child: TextField(controller: _amountController,
                 maxLength: 10, keyboardType: TextInputType.number, decoration: InputDecoration(
                   prefixText: '\$', label: Text("Amount")),),
@@ -57,14 +59,30 @@ class _NewexpenseState extends State<Newexpense>{
             ],
           ),
      
-        Row(children: [ElevatedButton(onPressed: (){
+        Row(children: [
+          DropdownButton(
+            // apr 8
+            value: _selectedCategory,
+            items: Category.values.map(
+          (category) => DropdownMenuItem(value: category,
+            child: Text(category.name.toUpperCase(),))
+          ) .toList(),
+           onChanged: (value){
+            if(value == null){
+              return;
+            }
+            setState(() {
+              _selectedCategory = value;
+            });
+           }),
+          ElevatedButton(onPressed: (){
           print(_titleController.text); 
           print(_amountController);
         }, child: Text("Save Your Expense")),
         ElevatedButton(onPressed: (){
           // make a cancel button
           Navigator.pop(context);
-        }, child: Text("Cancel"))
+        }, child: const Text("Cancel"))
         ],)
       ]),
     );
