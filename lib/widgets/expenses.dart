@@ -21,9 +21,22 @@ class _ExpensesState extends State<Expenses>{
     });
   }
   void _removeExpense(Expense expense){
+    final expenseIndex = _registeredExpenses.indexOf(expense);
     setState(() {
       _registeredExpenses.remove(expense);
     });
+    // clearing the expeneses. the undo button works for only one expense
+    // ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      duration: Duration(seconds: 4),
+      content: Text("Expense was deleted"),
+      action: SnackBarAction(label: "Undo?", onPressed: (){
+        setState(() {
+          _registeredExpenses.insert(expenseIndex, expense);
+        });
+      }),
+    )
+    );
   }
   final List<Expense> _registeredExpenses = [
     Expense(title: "Amores Pizza Cafe", amount: 15.94, date: DateTime.now(), category: Category.food),
@@ -34,6 +47,11 @@ class _ExpensesState extends State<Expenses>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    Widget mainContent = const Center(child: Text("There is no expenses. Click the plus (+) to add one"),);
+    if(_registeredExpenses.isNotEmpty){
+      mainContent = Expenseslist(expenses: _registeredExpenses, onRemoveExpense: _removeExpense);
+    }
+
     return Scaffold(appBar: AppBar(title: const Text("EXpense Tracker"),
     actions: [IconButton(icon: const Icon(Icons.add), onPressed: _openAddExpenseOverlay,
     )],),
@@ -41,9 +59,11 @@ class _ExpensesState extends State<Expenses>{
       Text("Chart Data"),
       // SizedBox(height: 30),
       Expanded(
-        child: Expenseslist(
-          onRemoveExpense: _removeExpense,
-          expenses: _registeredExpenses))],
+        child: mainContent
+        // Expenseslist(
+        //   onRemoveExpense: _removeExpense,
+        //   expenses: _registeredExpenses)
+          )],
         ),
       );
   }
