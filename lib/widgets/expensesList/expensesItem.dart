@@ -11,7 +11,8 @@ class Expensesitem extends StatelessWidget{
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 19,),
       child: Column(
         children: [
-          Text(expense.title), const SizedBox(height: 4), // space between row and column
+          Text(expense.title, style: Theme.of(context).textTheme.titleLarge,), 
+          const SizedBox(height: 4), // space between row and column
           Row(children: [Text('\$${expense.amount.toStringAsFixed(2)}'),
           Spacer(),
           Row(children: [Icon(categoryIcons[expense.category]), const SizedBox(width: 10),
