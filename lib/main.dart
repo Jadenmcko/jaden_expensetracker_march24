@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jaden_expensetracker_march24/widgets/expenses.dart';
 
 var kColorScheme = ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 164, 71, 118));
+var kDarkColorScheme = ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: const Color.fromARGB(255, 5, 11, 13));
 void main() {
   runApp(MaterialApp(
     theme: ThemeData(
@@ -20,6 +21,17 @@ void main() {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(backgroundColor: kColorScheme.primaryContainer))),
+        
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme: kDarkColorScheme,
+        cardTheme: CardThemeData(
+        color: kDarkColorScheme.secondaryContainer, 
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8)
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(backgroundColor: kColorScheme.primaryContainer))
+        ),
+      themeMode: ThemeMode.system,
     home: Expenses()
     ),
   );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jaden_expensetracker_march24/models/expense.dart';
+import 'package:jaden_expensetracker_march24/widgets/chart/chart.dart';
 import 'package:jaden_expensetracker_march24/widgets/expensesList/expensesList.dart';
 import 'package:jaden_expensetracker_march24/widgets/newExpense.dart';
 
@@ -56,8 +57,9 @@ class _ExpensesState extends State<Expenses>{
     actions: [IconButton(icon: const Icon(Icons.add), onPressed: _openAddExpenseOverlay,
     )],),
       body: Column(children: [
-      Text("Chart Data"),
-      // SizedBox(height: 30),
+        Chart(expenses: _registeredExpenses),
+        Expanded(child: mainContent),
+      // Text("Chart Data"),
       Expanded(
         child: mainContent
         // Expenseslist(
