@@ -2,6 +2,8 @@ import 'package:jaden_expensetracker_march24/models/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/cupertino.dart';
+import "dart:io";
 final formatter = DateFormat.yMd();
 class Newexpense extends StatefulWidget{
   const Newexpense({super.key, required this.onAddExpense});
@@ -21,7 +23,7 @@ class _NewexpenseState extends State<Newexpense>{
     final amountisInvalid = enteredAmount == null || enteredAmount <= 0;
     if (_titleController.text.trim().isEmpty || amountisInvalid || _selectedDate == null){
       //errorrr
-      showDialog(context: context, builder: (ctx) => AlertDialog(
+      showDialog(context: context, builder: (ctx) => CupertinoAlertDialog(
         title: const Text("Invalid Inout!"),
         content: const Text("Please make sure you into a valid title, amount, and date"),
         actions: [TextButton(onPressed: (){
@@ -33,6 +35,7 @@ class _NewexpenseState extends State<Newexpense>{
     widget.onAddExpense(
       Expense(title: _titleController.text, amount: enteredAmount, date: _selectedDate!, category: _selectedCategory)
     );
+    Navigator.pop(context);
   }
   void _presentDatePicker() async{
     final now = DateTime.now();

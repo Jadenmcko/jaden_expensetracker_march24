@@ -48,6 +48,9 @@ class _ExpensesState extends State<Expenses>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    // print("Width: ${MediaQuery.of(context).size.width}");
+    // print("Height: ${MediaQuery.of(context).size.height}");
+    var width = MediaQuery.of(context).size.width;
     Widget mainContent = const Center(child: Text("There is no expenses. Click the plus (+) to add one"),);
     if(_registeredExpenses.isNotEmpty){
       mainContent = Expenseslist(expenses: _registeredExpenses, onRemoveExpense: _removeExpense);
@@ -56,17 +59,17 @@ class _ExpensesState extends State<Expenses>{
     return Scaffold(appBar: AppBar(title: const Text("EXpense Tracker"),
     actions: [IconButton(icon: const Icon(Icons.add), onPressed: _openAddExpenseOverlay,
     )],),
-      body: Column(children: [
+      body: width < 600 ? Column(children: [
         Chart(expenses: _registeredExpenses),
         Expanded(child: mainContent),
       // Text("Chart Data"),
-      Expanded(
-        child: mainContent
         // Expenseslist(
         //   onRemoveExpense: _removeExpense,
         //   expenses: _registeredExpenses)
-          )],
-        ),
+  ]):
+        Row(children: [Expanded(child: Chart(expenses: _registeredExpenses)),
+        Expanded(child: mainContent),
+        ])
       );
   }
 }
